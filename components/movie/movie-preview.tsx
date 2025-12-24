@@ -1,35 +1,55 @@
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Genres } from './genres';
 import { Poster } from './poster';
 import { Rating } from './rating';
 
 type Props = {
   movie: any;
+  showOverview?: boolean;
 };
 
 /**
  * Displays a single movie .
  * TODO: Implement movie type
  */
-export function MoviePreview({ movie }: Props) {
+export function MoviePreview({
+  movie,
+  showOverview = false,
+}: Props) {
   // const theme = useColorScheme() ?? 'light';
+  const router = useRouter();
+
+  const onPress = () => {
+    router.push({
+      pathname: '/movie/[id]',
+      params: { id: movie.id },
+    });
+  }
 
   return (
-    <ThemedView style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.container}
+    >
       <ThemedView style={styles.posterContainer}>
         <Poster path={movie.poster_path} />
       </ThemedView>
       <ThemedView style={styles.textContainer}>
         <ThemedText type="subtitle">{movie.title}</ThemedText>
         <Rating voteAverage={movie.vote_average} />
-        <ThemedText>
-          {movie.overview.length > 100 ? `${movie.overview.substring(0, 97).trim()}...` : movie.overview}
-        </ThemedText>
-        <Genres genreIds={movie.genre_ids} />
+        {
+          showOverview &&
+          <ThemedText>
+            {movie.overview.length > 100 ? `${movie.overview.substring(0, 97).trim()}...` : movie.overview}
+          </ThemedText>
+        }
+        {/* "genre_ids" is present in list of movies and "genres" comes in movie by id, I used different props to know its origin */}
+        <Genres genreIds={movie.genre_ids} genres={movie.genres} />
       </ThemedView>
-    </ThemedView>
+    </TouchableOpacity>
   );
 }
 

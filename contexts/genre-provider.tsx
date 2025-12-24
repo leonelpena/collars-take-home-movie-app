@@ -25,7 +25,7 @@ export const GenreListProvider = ({ children }: { children: ReactNode }) => {
           obj[item.id] = item; // We use the 'id' as the key, it simplifies and fasten the search later on
           return obj;
         }, {});
-        console.debug(indexedGenres);
+        // console.debug(indexedGenres);
         setGenres(indexedGenres);
       })
       .catch(err => setError(err))

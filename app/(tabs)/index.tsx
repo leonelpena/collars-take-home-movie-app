@@ -102,6 +102,7 @@ import { ThemedSafeAreaView } from '@/components/themed-safe-are-view';
 import { ThemedText } from '@/components/themed-text';
 import { Loading } from '@/components/ui/loading';
 import { UIError } from '@/components/ui/ui-error';
+import { SPACES } from '@/constants/theme';
 import usePopularMovies from '@/hooks/use-popular-movies';
 import { FlatList, StyleSheet } from 'react-native';
 
@@ -121,7 +122,7 @@ export default function MoviesScreen() {
       <ThemedText type="title">Movies</ThemedText>
       <FlatList
         data={data?.results || []}
-        renderItem={({ item }) => <MoviePreview movie={item} />}
+        renderItem={({ item }) => <MoviePreview movie={item} showOverview />}
         keyExtractor={item => item.id}
       />
     </ThemedSafeAreaView>
@@ -131,6 +132,6 @@ export default function MoviesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: SPACES.MD,
   },
 });

@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
+import { CloseButton } from '@/components/ui/close-button';
 import { GenreListProvider } from '@/contexts/genre-provider';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -21,6 +22,14 @@ export default function RootLayout() {
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+            <Stack.Screen
+              name="movie/[id]"
+              options={{
+                presentation: 'modal',
+                title: 'Movie details',
+                headerRight: () => <CloseButton />
+              }}
+            />
           </Stack>
           <StatusBar style="auto" />
         </GenreListProvider>
