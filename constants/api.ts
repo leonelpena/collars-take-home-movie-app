@@ -24,5 +24,6 @@ export const API_ENDPOINTS = {
   },
   images: {
     poster: (path: string, size: POSTER_IMAGE_SIZE_TYPE) => `https://image.tmdb.org/t/p/w${size}/${path}`,
-  }
+  },
+  genres: '/genre/movie/list?language=en-US',
 };

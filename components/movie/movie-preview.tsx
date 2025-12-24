@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { StyleSheet } from 'react-native';
+import { Genres } from './genres';
 import { Poster } from './poster';
 import { Rating } from './rating';
 
@@ -26,6 +27,7 @@ export function MoviePreview({ movie }: Props) {
         <ThemedText>
           {movie.overview.length > 100 ? `${movie.overview.substring(0, 97).trim()}...` : movie.overview}
         </ThemedText>
+        <Genres genreIds={movie.genre_ids} />
       </ThemedView>
     </ThemedView>
   );
