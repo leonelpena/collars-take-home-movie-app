@@ -1,7 +1,6 @@
 import { ThemedText } from '@/components/themed-text';
 import { GenreListContext } from '@/contexts/genre-provider';
 import React, { useContext } from 'react';
-import { StyleSheet } from 'react-native';
 
 type GenreType = {
   id: number;
@@ -30,15 +29,8 @@ export function Genres({ genreIds, genres }: Props) {
     : genres?.map(({id, name}) => name) || [];
 
   return (
-    <ThemedText style={styles.text}>
+    <ThemedText type="soft">
       {names.join(' · ')}
     </ThemedText>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    opacity: 0.6,
-    fontSize: 14,
-  },
-});
