@@ -3,6 +3,7 @@ import { ThemedView } from '@/components/themed-view';
 import { useRouter } from 'expo-router';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Genres } from './genres';
+import { OriginalLanguage } from './language';
 import { Poster } from './poster';
 import { Rating } from './rating';
 
@@ -48,6 +49,7 @@ export function MoviePreview({
         }
         {/* "genre_ids" is present in list of movies and "genres" comes in movie by id, I used different props to know its origin */}
         <Genres genreIds={movie.genre_ids} genres={movie.genres} />
+        <OriginalLanguage originalLanguage={movie.original_language} />
       </ThemedView>
     </TouchableOpacity>
   );
