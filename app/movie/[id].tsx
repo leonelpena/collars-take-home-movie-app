@@ -1,3 +1,4 @@
+import { HighlightedInfo } from '@/components/movie/highlighted-info';
 import { MoviePreview } from '@/components/movie/movie-preview';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -25,6 +26,11 @@ export default function MovieById() {
   return (
     <ThemedView style={styles.container}>
       <MoviePreview movie={data} />
+      <HighlightedInfo
+        runtime={data.runtime}
+        status={data.status}
+        releaseDate={data.release_date}
+      />
       <ThemedView style={styles.section}>
         <ThemedText type="subtitle">Synopsis</ThemedText>
         <ThemedText>
@@ -44,5 +50,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     rowGap: SPACES.SM,
     marginVertical: SPACES.SM,
-  }
+  },
 });
