@@ -2,6 +2,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { StyleSheet } from 'react-native';
 import { Poster } from './poster';
+import { Rating } from './rating';
 
 type Props = {
   movie: any;
@@ -21,6 +22,7 @@ export function MoviePreview({ movie }: Props) {
       </ThemedView>
       <ThemedView style={styles.textContainer}>
         <ThemedText type="subtitle">{movie.title}</ThemedText>
+        <Rating voteAverage={movie.vote_average} />
         <ThemedText>
           {movie.overview.length > 100 ? `${movie.overview.substring(0, 97).trim()}...` : movie.overview}
         </ThemedText>
@@ -41,5 +43,6 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1, // Text uses the remaining space
+    rowGap: 10
   }
 });
