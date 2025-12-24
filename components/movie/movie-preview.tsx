@@ -44,7 +44,7 @@ export function MoviePreview({
         {
           showOverview &&
           <ThemedText>
-            {movie.overview.length > 100 ? `${movie.overview.substring(0, 97).trim()}...` : movie.overview}
+            {movie.overview.length > 90 ? `${movie.overview.substring(0, 87).trim()}...` : movie.overview}
           </ThemedText>
         }
         {/* "genre_ids" is present in list of movies and "genres" comes in movie by id, I used different props to know its origin */}
