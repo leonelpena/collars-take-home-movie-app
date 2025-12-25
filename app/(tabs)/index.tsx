@@ -100,6 +100,7 @@
 import { MoviePreview } from '@/components/movie/movie-preview';
 import { ThemedSafeAreaView } from '@/components/themed-safe-are-view';
 import { ThemedText } from '@/components/themed-text';
+import { FadeInDownAnimation } from '@/components/ui/fadein-down-animation';
 import { Loading } from '@/components/ui/loading';
 import { Filter, TabFilters } from '@/components/ui/tab-filters';
 import { UIError } from '@/components/ui/ui-error';
@@ -141,7 +142,11 @@ const PopularMovies = () => {
   return (
     <FlatList
       data={data?.results || []}
-      renderItem={({ item }) => <MoviePreview movie={item} preview />}
+      renderItem={({ item, index }) => (
+        <FadeInDownAnimation mutiplierDelay={index}>
+          <MoviePreview movie={item} preview />
+        </FadeInDownAnimation>
+      )}
       keyExtractor={item => item.id}
     />
   );
@@ -161,7 +166,11 @@ const UpcomingMovies = () => {
   return (
     <FlatList
       data={data?.results || []}
-      renderItem={({ item }) => <MoviePreview movie={item} preview />}
+      renderItem={({ item, index }) => (
+        <FadeInDownAnimation mutiplierDelay={index}>
+          <MoviePreview movie={item} preview />
+        </FadeInDownAnimation>
+      )}
       keyExtractor={item => item.id}
     />
   );

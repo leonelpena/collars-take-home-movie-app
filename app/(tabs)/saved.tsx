@@ -114,6 +114,7 @@
 import { MoviePreview } from '@/components/movie/movie-preview';
 import { ThemedSafeAreaView } from '@/components/themed-safe-are-view';
 import { ThemedText } from '@/components/themed-text';
+import { FadeInDownAnimation } from '@/components/ui/fadein-down-animation';
 import { Loading } from '@/components/ui/loading';
 import { UIError } from '@/components/ui/ui-error';
 import { SPACES } from '@/constants/theme';
@@ -139,7 +140,11 @@ export default function SavedMoviesScreen() {
       <ThemedText type="title">Saved</ThemedText>
       <FlatList
         data={data || []}
-        renderItem={({ item }) => <MoviePreview movie={item} preview />}
+        renderItem={({ item, index }) => (
+          <FadeInDownAnimation mutiplierDelay={index}>
+            <MoviePreview movie={item} preview />
+          </FadeInDownAnimation>
+        )}
         keyExtractor={item => item.id}
       />
     </ThemedSafeAreaView>
