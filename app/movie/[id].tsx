@@ -13,7 +13,7 @@ export default function MovieById() {
   const { id: movieId } = useLocalSearchParams();
   const { data, isLoading, error } = useMovieDetails(movieId);
 
-  console.log(data);
+  // console.log(data);
 
   if (isLoading || !data) {
     return <Loading />;
