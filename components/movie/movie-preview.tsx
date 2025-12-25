@@ -66,8 +66,8 @@ export function MoviePreview({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    columnGap: 20,
-    marginVertical: 15,
+    columnGap: SPACES.LG,
+    marginVertical: SPACES.MD,
   },
   posterContainer: {
     width: 150, // We set a fixed width
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1, // Text uses the remaining space
-    rowGap: 10
+    rowGap: SPACES.SM,
   },
   titleContainer: {
     flexDirection: 'row',

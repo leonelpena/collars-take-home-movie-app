@@ -18,8 +18,8 @@ export const API_ENDPOINTS = {
     popular: '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc',
 
     // TODO: - Pagination support can be added
-    //  - Add date range '{min_date} and {max_date}'
-    // upcoming: '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}',
+    // NOTE: - We keep the same var names as TMDB original query for '{min_date} and {max_date}'
+    upcoming: (min_date: string, max_date: string) => `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${min_date}&release_date.lte=${max_date}`,
     movieById: (id: string) => `/movie/${id}`,
   },
   images: {
