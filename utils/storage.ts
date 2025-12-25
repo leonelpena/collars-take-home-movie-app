@@ -34,3 +34,26 @@ export function removeMovie(id: string) {
   }
   return AsyncStorage.removeItem(movieId.toString());
 }
+
+/**
+ * Retrieves all saved movies
+ */
+export async function getAllMovies() {
+  try {
+    const allMoviesIDs = await AsyncStorage.getAllKeys();
+
+    if (!allMoviesIDs || allMoviesIDs.length === 0) {
+      return [];
+    }
+
+    const pairs = await AsyncStorage.multiGet(allMoviesIDs);
+    
+    // multiGet return [key, pair] so we have to map it, also filtering out nulls
+    return pairs
+      .map(([key, value]) => (value ? JSON.parse(value) : null))
+      .filter((movie) => movie !== null);
+  } catch (error) {
+    console.error("Error fetching all movies:", error);
+    return [];
+  }
+}
