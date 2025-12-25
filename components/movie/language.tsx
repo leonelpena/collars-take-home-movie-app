@@ -12,7 +12,7 @@ type Props = {
  */
 export function OriginalLanguage({ originalLanguage = 'en' }: Props) {
   return (
-    <ThemedText type="soft">
+    <ThemedText type="muted">
       Language: {LANGUAGES[originalLanguage]}
     </ThemedText>
   );

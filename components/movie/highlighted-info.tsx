@@ -26,19 +26,19 @@ export function HighlightedInfo({
   return (
     <ThemedView style={styles.summaryInfoContainer}>
       <ThemedView style={styles.summaryInfoItem}>
-        <ThemedText type="soft">Duration</ThemedText>
+        <ThemedText type="muted">Duration</ThemedText>
         <ThemedText type="defaultSemiBold">
           {runtime} min
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.summaryInfoSeparator} />
       <ThemedView style={styles.summaryInfoItem}>
-        <ThemedText type="soft">Status</ThemedText>
+        <ThemedText type="muted">Status</ThemedText>
         <ThemedText type="defaultSemiBold">{status}</ThemedText>
       </ThemedView>
       <ThemedView style={styles.summaryInfoSeparator} />
       <ThemedView style={styles.summaryInfoItem}>
-        <ThemedText type="soft">Date</ThemedText>
+        <ThemedText type="muted">Date</ThemedText>
         <ThemedText type="defaultSemiBold">{formatDate(releaseDate)}</ThemedText>
       </ThemedView>
     </ThemedView>

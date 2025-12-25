@@ -32,7 +32,7 @@ export function Genres({ genreIds, genres }: Props) {
   }
 
   return (
-    <ThemedText type="soft">
+    <ThemedText type="muted">
       {names.join(' · ')}
     </ThemedText>
   );
