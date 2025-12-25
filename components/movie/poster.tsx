@@ -11,8 +11,6 @@ type Props = {
  * Displays the movie poster.
  */
 export function Poster({ path, width = POSTER_IMAGE_SIZE.w500 }: Props) {
-  // const theme = useColorScheme() ?? 'light';
-
   return (
     <Image
       source={{
@@ -30,8 +28,5 @@ export function Poster({ path, width = POSTER_IMAGE_SIZE.w500 }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
+
 });
