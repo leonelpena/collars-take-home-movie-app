@@ -1,5 +1,6 @@
 import { HighlightedInfo } from '@/components/movie/highlighted-info';
 import { MoviePreview } from '@/components/movie/movie-preview';
+import { Trailers } from '@/components/movie/Trailers';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Loading } from '@/components/ui/loading';
@@ -12,8 +13,6 @@ import { StyleSheet } from 'react-native';
 export default function MovieById() {
   const { id: movieId } = useLocalSearchParams();
   const { data, isLoading, error } = useMovieDetails(movieId);
-
-  // console.log(data);
 
   if (isLoading || !data) {
     return <Loading />;
@@ -37,6 +36,9 @@ export default function MovieById() {
           {data.overview}
         </ThemedText>
       </ThemedView>
+      <ThemedView style={styles.trailers}>
+        <Trailers videos={data?.videos?.results} />
+      </ThemedView>
     </ThemedView>
   );
 }
@@ -51,4 +53,7 @@ const styles = StyleSheet.create({
     rowGap: SPACES.SM,
     marginVertical: SPACES.SM,
   },
+  trailers: {
+    marginVertical: SPACES.SM,
+  }
 });

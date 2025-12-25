@@ -9,6 +9,7 @@ import { OriginalLanguage } from './language';
 import { Poster } from './poster';
 import { Rating } from './rating';
 
+
 type Props = {
   movie: any;
   preview?: boolean;
@@ -22,7 +23,6 @@ export function MoviePreview({
   movie,
   preview = false,
 }: Props) {
-  // const theme = useColorScheme() ?? 'light';
   const router = useRouter();
 
   const onPress = () => {
