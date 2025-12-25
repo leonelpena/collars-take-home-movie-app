@@ -1,6 +1,7 @@
-import { getMovie, removeMovie, saveMovie } from '@/utils/storage';
+import useRemoveMovieMutation from '@/hooks/use-remove-movie-mutation';
+import useSaveMovieMutation from '@/hooks/use-save-movie-mutation';
+import useSavedMovie from '@/hooks/use-saved-movie';
 import { Ionicons } from '@expo/vector-icons';
-import { useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 type Props = {
@@ -9,27 +10,26 @@ type Props = {
 };
 
 /**
- * Save and unsaved a movie for offline usage.
+ * Save and remove a movie for offline usage.
  */
 export function SaveButton({ movieId, movie }: Props) {
-  const [isMovieSaved, setIsMovieSaved] = useState(false);
+  const {movie: savedMovie, isLoading, error} = useSavedMovie(movieId);
+  const isMovieSaved = !!savedMovie;
+
+  const { saveMovie } = useSaveMovieMutation(movieId);
+  const { removeMovie } = useRemoveMovieMutation(movieId);
 
   const handleOnPress = async () => {
+    if (isLoading || error) {
+      return null;
+    }
+
     if (isMovieSaved) {
-      await removeMovie(movieId);
-      setIsMovieSaved(false);
+      removeMovie();
     } else {
-      await saveMovie(movieId, movie);
-      setIsMovieSaved(true);
+      saveMovie(movie);
     }
   };
-
-  useEffect(() => {
-    (async () => {
-      const savedMovie = await getMovie(movieId);
-      setIsMovieSaved(savedMovie !== null && typeof savedMovie !== 'undefined');
-    })()
-  }, []);
 
   return (
     <TouchableOpacity onPress={handleOnPress} style={styles.button}>

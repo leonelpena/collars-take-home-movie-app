@@ -118,11 +118,12 @@ import { FadeInDownAnimation } from '@/components/ui/fadein-down-animation';
 import { Loading } from '@/components/ui/loading';
 import { UIError } from '@/components/ui/ui-error';
 import { SPACES } from '@/constants/theme';
-import useSavedMovies from '@/hooks/use-saved-movies';
+import { SavedMoviesContext } from '@/contexts/saved-movies-provider';
+import { useContext } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
 export default function SavedMoviesScreen() {
-  const {data, isLoading, error} = useSavedMovies();
+  const {data, isLoading, error} = useContext(SavedMoviesContext);
 
   if (isLoading) {
     return <Loading />;

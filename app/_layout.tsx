@@ -1,11 +1,11 @@
+import { CloseButton } from '@/components/ui/close-button';
+import { GenreListProvider } from '@/contexts/genre-provider';
+import { SavedMoviesProvider } from '@/contexts/saved-movies-provider';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-
-import { CloseButton } from '@/components/ui/close-button';
-import { GenreListProvider } from '@/contexts/genre-provider';
-import { useColorScheme } from '@/hooks/use-color-scheme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export const unstable_settings = {
@@ -19,19 +19,21 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <SafeAreaProvider>
         <GenreListProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-            <Stack.Screen
-              name="movie/[id]"
-              options={{
-                presentation: 'modal',
-                title: 'Movie details',
-                headerRight: () => <CloseButton />
-              }}
-            />
-          </Stack>
-          <StatusBar style="auto" />
+          <SavedMoviesProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+              <Stack.Screen
+                name="movie/[id]"
+                options={{
+                  presentation: 'modal',
+                  title: 'Movie details',
+                  headerRight: () => <CloseButton />
+                }}
+              />
+            </Stack>
+            <StatusBar style="auto" />
+          </SavedMoviesProvider>
         </GenreListProvider>
       </SafeAreaProvider>
     </ThemeProvider>
