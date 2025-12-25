@@ -9,6 +9,10 @@ export async function apiRequest(
   try {
     const apiUrl = API_BASE_URL + url;
 
+    if (!process.env.EXPO_PUBLIC_API_ACCESS_TOKEN) {
+      throw new Error('Missing EXPO_PUBLIC_API_ACCESS_TOKEN at .env file');
+    }
+
     const response = await fetch(apiUrl, {
       // TODO: Verify that the var is defined before using it and throw warning if
       // not.
@@ -24,6 +28,7 @@ export async function apiRequest(
     } else {
       data = await response.text();
     }
+
     if (!response.ok) {
       throw new Error(data?.message || 'API request failed');
     }
