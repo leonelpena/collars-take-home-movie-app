@@ -12,13 +12,16 @@ type Props = {
 export function Rating({ voteAverage }: Props) {
   const backgroundColor = useThemeColor({}, 'background');
 
+  // voteAverage range is 0 to 10, so we compress it into 0 to 5
+  const vote = Math.round(voteAverage / 2);
+
   return (
     <RNRating
       type='star'
-      ratingCount={5} // shows 5 stars
+      ratingCount={vote} // shows only the stars voted
       imageSize={22}
       readonly // does not allow the user to change the rating
-      startingValue={Math.round(voteAverage / 2)} // voteAverage range is 0 to 10, so we compress it into 0 to 5
+      startingValue={vote}
       style={styles.rating}
       tintColor={backgroundColor}
     />
