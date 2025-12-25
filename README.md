@@ -10,7 +10,7 @@ I approached this project prioritazing the main features and deepening into them
 
 Before writing any code, I designed the app in excalidraw to have a north of how I wanted the app to look and feel.
 
-Take a look at the mockup. [TODO]
+Take a look at the [!mockup](collars-challenge.png).
 
 ## Get started
 
