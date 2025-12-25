@@ -24,6 +24,7 @@ export function Poster({ path, width = POSTER_IMAGE_SIZE.w500 }: Props) {
         borderRadius: 10,
       }}
       contentFit="cover"
+      cachePolicy="disk"
     />
   );
 }
