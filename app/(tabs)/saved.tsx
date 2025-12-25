@@ -6,6 +6,7 @@ import { Loading } from '@/components/ui/loading';
 import { UIError } from '@/components/ui/ui-error';
 import { SPACES } from '@/constants/theme';
 import { SavedMoviesContext } from '@/contexts/saved-movies-provider';
+import { Ionicons } from '@expo/vector-icons';
 import { useContext } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
@@ -26,6 +27,14 @@ export default function SavedMoviesScreen() {
   return (
     <ThemedSafeAreaView style={styles.container}>
       <ThemedText type="title">Saved</ThemedText>
+      {data && data.length === 0 && (
+        <ThemedText
+          type="defaultSemiBold"
+          style={styles.emptyList}
+        >
+          Save your favorite movies for later with <Ionicons name="heart-outline" size={20} color="red" /> icon
+        </ThemedText>
+      )}
       <FlatList
         data={data || []}
         renderItem={({ item, index }) => (
@@ -44,4 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: SPACES.MD,
   },
+  emptyList: {
+    marginVertical: SPACES.LG,
+  }
 });
