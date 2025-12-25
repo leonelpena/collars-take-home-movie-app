@@ -122,7 +122,7 @@ export default function MoviesScreen() {
       <ThemedText type="title">Movies</ThemedText>
       <FlatList
         data={data?.results || []}
-        renderItem={({ item }) => <MoviePreview movie={item} showOverview />}
+        renderItem={({ item }) => <MoviePreview movie={item} preview />}
         keyExtractor={item => item.id}
       />
     </ThemedSafeAreaView>

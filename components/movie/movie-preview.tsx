@@ -1,5 +1,7 @@
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { SaveButton } from '@/components/ui/save-button';
+import { SPACES } from '@/constants/theme';
 import { useRouter } from 'expo-router';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Genres } from './genres';
@@ -9,7 +11,7 @@ import { Rating } from './rating';
 
 type Props = {
   movie: any;
-  showOverview?: boolean;
+  preview?: boolean;
 };
 
 /**
@@ -18,7 +20,7 @@ type Props = {
  */
 export function MoviePreview({
   movie,
-  showOverview = false,
+  preview = false,
 }: Props) {
   // const theme = useColorScheme() ?? 'light';
   const router = useRouter();
@@ -39,10 +41,16 @@ export function MoviePreview({
         <Poster path={movie.poster_path} />
       </ThemedView>
       <ThemedView style={styles.textContainer}>
-        <ThemedText type="subtitle">{movie.title}</ThemedText>
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText type="subtitle">{movie.title}</ThemedText>
+          {
+            !preview &&
+            <SaveButton movieId={movie.id} movie={movie} />
+          }
+        </ThemedView>
         <Rating voteAverage={movie.vote_average} />
         {
-          showOverview &&
+          preview &&
           <ThemedText>
             {movie.overview.length > 90 ? `${movie.overview.substring(0, 87).trim()}...` : movie.overview}
           </ThemedText>
@@ -68,5 +76,10 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1, // Text uses the remaining space
     rowGap: 10
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginRight: SPACES.SM,
   }
 });
