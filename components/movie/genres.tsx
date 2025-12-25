@@ -24,9 +24,12 @@ type Props = {
 export function Genres({ genreIds, genres }: Props) {
   const { genres: genreList, isLoading, error } = useContext(GenreListContext);
 
-  const names = genreIds
-    ? genreIds.map(id => genreList[id].name).slice(0, 2)
-    : genres?.map(({id, name}) => name) || [];
+  let names: string[] = [];
+  if (!isLoading && !error && (genreIds || genres)) {
+    names = genreIds
+      ? genreIds.map(id => genreList[id].name).slice(0, 2)
+      : genres?.map(({id, name}) => name) || [];
+  }
 
   return (
     <ThemedText type="soft">
