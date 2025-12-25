@@ -114,12 +114,10 @@
 import { MoviePreview } from '@/components/movie/movie-preview';
 import { ThemedSafeAreaView } from '@/components/themed-safe-are-view';
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
 import { Loading } from '@/components/ui/loading';
 import { UIError } from '@/components/ui/ui-error';
 import { SPACES } from '@/constants/theme';
 import useSavedMovies from '@/hooks/use-saved-movies';
-import { Ionicons } from '@expo/vector-icons';
 import { FlatList, StyleSheet } from 'react-native';
 
 export default function SavedMoviesScreen() {
@@ -138,14 +136,7 @@ export default function SavedMoviesScreen() {
 
   return (
     <ThemedSafeAreaView style={styles.container}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Saved</ThemedText>
-        <Ionicons
-          name="heart"
-          size={26}
-          color="red"
-        />
-      </ThemedView>
+      <ThemedText type="title">Saved</ThemedText>
       <FlatList
         data={data || []}
         renderItem={({ item }) => <MoviePreview movie={item} preview />}
@@ -160,8 +151,4 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: SPACES.MD,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    columnGap: SPACES.SM,
-  }
 });
