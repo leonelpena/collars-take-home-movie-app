@@ -1,6 +1,8 @@
 import { ThemedScrollView } from '@/components/themed-scroll-view';
+import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { SPACES } from '@/constants/theme';
+import { useNetInfo } from "@react-native-community/netinfo";
 import { useCallback, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import YoutubePlayer from "react-native-youtube-iframe";
@@ -25,15 +27,21 @@ const CARD_WIDTH = SCREEN_WIDTH * 0.85;
  * because of performance we only show the first 3 videos.
  */
 export function Trailers({ videos = [] }: Props) {
-  // {
-  //       videoNotAvailable && (
-  //         <ThemedText>
-  //           Could not load the video, try again later.
-  //         </ThemedText>
-  //       )
-  //     }
+  const { isInternetReachable } = useNetInfo();
+
+  if (isInternetReachable === false) {
+    return (
+      <ThemedText>
+        It appears you do not have internet connection, trailers are not available offline.
+      </ThemedText>
+    )
+  }
+
+  const connectionKey = isInternetReachable ? "online" : "loading";
+
   return (
     <ThemedScrollView
+      key={connectionKey}
       horizontal
       showsHorizontalScrollIndicator={false}
       snapToInterval={CARD_WIDTH + SPACES.SM}

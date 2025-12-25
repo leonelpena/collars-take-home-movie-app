@@ -14,7 +14,7 @@ export default function MovieById() {
   const { id: movieId } = useLocalSearchParams();
   const { data, isLoading, error } = useMovieDetails(movieId);
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return <Loading />;
   }
 
@@ -37,6 +37,7 @@ export default function MovieById() {
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.trailers}>
+        <ThemedText type="subtitle">Trailers</ThemedText>
         <Trailers videos={data?.videos?.results} />
       </ThemedView>
     </ThemedView>
@@ -55,5 +56,6 @@ const styles = StyleSheet.create({
   },
   trailers: {
     marginVertical: SPACES.SM,
+    rowGap: SPACES.SM,
   }
 });
