@@ -3,6 +3,7 @@ import { ThemedView } from '@/components/themed-view';
 import { SaveButton } from '@/components/ui/save-button';
 import { SPACES } from '@/constants/theme';
 import { useRouter } from 'expo-router';
+import { ReactNode } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Genres } from './genres';
 import { OriginalLanguage } from './language';
@@ -32,11 +33,14 @@ export function MoviePreview({
     });
   }
 
+  const Wrapper = ({ children }: { children: ReactNode }) => {
+    return preview
+      ? <TouchableOpacity onPress={onPress} style={styles.container}>{children}</TouchableOpacity>
+      : <ThemedView style={styles.container}>{children}</ThemedView>;
+  }
+
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={styles.container}
-    >
+    <Wrapper>
       <ThemedView style={styles.posterContainer}>
         <Poster path={movie.poster_path} />
       </ThemedView>
@@ -59,7 +63,7 @@ export function MoviePreview({
         <Genres genreIds={movie.genre_ids} genres={movie.genres} />
         <OriginalLanguage originalLanguage={movie.original_language} />
       </ThemedView>
-    </TouchableOpacity>
+    </Wrapper>
   );
 }
 
