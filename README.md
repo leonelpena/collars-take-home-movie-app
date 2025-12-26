@@ -114,3 +114,12 @@ Due to time constraints the following features were not developed:
 * Search bar
 * Save movies into the TMDB API
 * More filters such as country, language, ratings, etc
+
+Also, the following features are needed for a real world app (just to name a few):
+
+* Error tracking and reporting (eg. Sentry)
+* Performance tracking
+* Analytics (understand how the users are using the app)
+* More types coverage
+* More error handling and custom messages
+* Automated testing (especially for critical features)
