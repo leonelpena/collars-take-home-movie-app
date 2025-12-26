@@ -4,7 +4,7 @@ This document explains the app organization, architecture, fetching patterns, da
 
 ## Personal Approach
 
-I approached this project prioritazing the main features and deepening into them, so I can show my mindset. Even thoguh I left some features out, I focused on architecture, good pattern, reusability, and UI planning and design. Hope thorugh my code I transmit my skills: to take perspective, prioritize, planning, focus and execution.
+I approached this project prioritizing the main features and deepening into them, so I can show my mindset. Even though I left some features out, I focused on architecture, good pattern, reusability, and UI planning and design. Hope thorugh my code I transmit my skills: to take perspective, prioritize, planning, focus and execution.
 
 ## Design
 
